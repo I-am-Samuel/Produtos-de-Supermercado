@@ -41,7 +41,7 @@ public class ArvoreProdutos {
             No novo = new No(elem);
             return novo;
         } else {
-            if (elem.getNome().compareTo(no.getInfo().getNome()) < 0) {
+            if (elem.getNome().compareToIgnoreCase(no.getInfo().getNome()) < 0) {
                 no.setEsq(inserir(elem, no.getEsq()));
             } else {
                 no.setDir(inserir(elem, no.getDir()));
