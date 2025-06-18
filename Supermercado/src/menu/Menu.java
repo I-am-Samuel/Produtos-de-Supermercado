@@ -22,6 +22,7 @@ public class Menu {
         System.out.println("2. Pesquisar Produto");
         System.out.println("3. Remover Produto");
         System.out.println("4. Mostrar Produtos");
+        System.out.println("5. Remover Produto");
         System.out.println("0. Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -49,6 +50,10 @@ public class Menu {
 
                 case 4:
                     menuMostrar();
+                    break;
+
+                case 5:
+                    menuRemover();
                     break;
 
                 case 0:
@@ -108,4 +113,10 @@ public class Menu {
             arvore.listar();
         }
     }    
+
+    public void menuRemover(){
+        System.out.println("Digite o nome do Produto para remover: ");
+        String produto = scanner.nextLine();
+        arvore.remover(produto);
+    }
 }

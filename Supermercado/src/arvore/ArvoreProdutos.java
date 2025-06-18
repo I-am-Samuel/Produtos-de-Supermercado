@@ -62,10 +62,10 @@ public class ArvoreProdutos {
 
     private No pesquisar(String nome, No no) {
         if (no != null) {
-            if (nome.compareTo(no.getInfo().getNome()) < 0) {
+            if (nome.compareToIgnoreCase(no.getInfo().getNome()) < 0) {
                 no = pesquisar(nome, no.getEsq());
             } else {
-                if (nome.compareTo(no.getInfo().getNome()) > 0) {
+                if (nome.compareToIgnoreCase(no.getInfo().getNome()) > 0) {
                     no = pesquisar(nome, no.getDir());
                 }
             }
@@ -75,6 +75,47 @@ public class ArvoreProdutos {
 
     // remove um determinado nó procurando pela chave. O nó pode estar em qualquer
     // posição na árvore
+
+    public boolean remover(String nome) {
+        if (pesquisar(nome, this.raiz) != null) {
+            this.raiz = remover(nome, this.raiz);
+            this.quantNos--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private No remover(String nome, No no) {
+        if (nome.compareToIgnoreCase(no.getInfo().getNome()) < 0) {
+            no.setEsq(remover(nome, no.getEsq()));
+        } else {
+            if (nome.compareToIgnoreCase(no.getInfo().getNome()) > 0) {
+                no.setDir(remover(nome, no.getDir()));
+            } else {
+                if (no.getDir() == null) {
+                    return no.getEsq();
+                } else {
+                    if (no.getEsq() == null) {
+                        return no.getDir();
+                    } else {
+                        no.setEsq(Arrumar(no, no.getEsq()));
+                    }
+                }
+            }
+        }
+        return no;
+    }
+
+    private No Arrumar(No arv, No maior) {
+        if (maior.getDir() != null) {
+            maior.setDir(Arrumar(arv, maior.getDir()));
+        } else {
+            arv.setInfo(maior.getInfo());
+            maior = maior.getEsq();
+        }
+        return maior;
+    }
 
     public void listar() {
         listarEmOrdem(this.raiz);
