@@ -107,11 +107,11 @@ public class ArvoreProdutos {
         return no;
     }
 
-    private No Arrumar(No arv, No maior) {
+    private No Arrumar(No no, No maior) {
         if (maior.getDir() != null) {
-            maior.setDir(Arrumar(arv, maior.getDir()));
+            maior.setDir(Arrumar(no, maior.getDir()));
         } else {
-            arv.setInfo(maior.getInfo());
+            no.setInfo(maior.getInfo());
             maior = maior.getEsq();
         }
         return maior;
