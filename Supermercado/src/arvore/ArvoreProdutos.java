@@ -136,4 +136,15 @@ public class ArvoreProdutos {
         }
     }
 
+     public boolean verificarExistencia(Produto elem) {
+    // já existe? —> não insere
+    if (pesquisar(elem.getNome())) {
+        return false;
+    }
+    // não existe —> insere
+    this.raiz = inserir(elem, this.raiz);
+    this.quantNos++;
+    return true;
+}
+
 }
